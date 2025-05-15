@@ -1,4 +1,4 @@
-class divide:
+class Divide:
     def div(self, num1, num2):
         try: #예외처리
             return num1 / num2
