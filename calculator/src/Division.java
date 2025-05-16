@@ -1,7 +1,7 @@
 //지송이 - 나눗셈 모듈 구현
 
-public class division {
-    public static double division(double a, double b) {
+public class Division {
+    public static double divide(double a, double b) {
         return a / b;
     }
 }
