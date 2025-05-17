@@ -1,5 +1,3 @@
-# division.py
-
 class Division:
     def divide(self, a, b):
         try: # 정상적인 결과일 때 a/b 반환 
