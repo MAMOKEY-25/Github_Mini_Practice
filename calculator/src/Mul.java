@@ -1,18 +1,13 @@
-//num1 * num2로 입력
-import java.util.Scanner;
-
+//곱셈 기능 담당 클래스
 public class Mul {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        int num1 = scanner.nextInt();           //첫번째 숫자 입력
-        char index = scanner.next().charAt(0);  //기호 입력
-        int num2 = scanner.nextInt();           //두번째 숫자 입력
-
-        if (index == '*') {                     //입력한 기호가 *면 작동
-            System.out.println(num1*num2);
-        }
-
-        scanner.close();                        //스캐너 닫기
+    public static double multiply(int num1, int num2) {    //실수형 매개변수 2개 받는 매서드 static으로 선언
+        return num1 * num2;                      //  num1과 num2를 곱한 값 반환
     }
 }
+
+/*사용 예시
+public class Main() {
+    public static void main(String[] args) {
+           double result = Mul.multiply(4, 5);      //두 개의 매개변수를 받아 곱셈 결과를 result 변수에 저장
+           System.out.print("result = " +result);   //결과값 출력
+ */
