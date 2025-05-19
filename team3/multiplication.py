@@ -1,6 +1,14 @@
+import numbers
+
 class Multiplication:
     def multiply(self, a, b):
-        if not (isinstance(a, (int, float)) and isinstance(b, (int, float))):
-            # 문자열을 넣을 경우 숫자만 입력하라는 메세지 반환
+        # numbers.Number: int, float 등 숫자 타입을 포괄
+        if not isinstance(a, numbers.Number) or not isinstance(b, numbers.Number):
             return "숫자만 입력하세요."
-        return a * b    # 정수형과 실수형인 a와 b를 곱해서 반환 
+        
+        result = a * b
+        
+        # float 결과에 대해 소수점 오차 제거 (소수점 10자리까지 반올림)
+        if isinstance(result, float):
+            return round(result, 10)
+        return result
