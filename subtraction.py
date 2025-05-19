@@ -1,12 +1,4 @@
-class Subtractor:
-    def subtract(self, a: int, b: int) -> int:
-        return a - b
-
-if __name__ == "__main__":
-    a = int(input("첫 번째 숫자: "))
-    b = int(input("두 번째 숫자: "))
-    
-    s = Subtractor()
-    result = s.subtract(a, b)
-    print("결과:", result)
-
+# 계산기 빼기 기능
+class Subtractor:  # 빼기 기능을 담당하는 클래스
+    def subtract(self, a, b):  # 매개변수 a와 b를 받음
+        return a - b  # a에서 b를 뺀 값을 반환
