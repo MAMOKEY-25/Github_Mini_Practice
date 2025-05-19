@@ -1,30 +1,30 @@
 import java.util.Scanner;
 
 public class CalculatorModule {
-    double num1 , num2;
-    double result , recentValue = 0;
-    String operator;
-    Scanner sc = new Scanner(System.in);
+    double num1 , num2;                  // 실수형 변수 num1 , num2 선언
+    double result , recentValue = 0;     // 실수형 결과 값 0으로 선언과 동시에 초기화
+    String operator;                     // 연산자 문자열로 선언
+    Scanner sc = new Scanner(System.in); // 입력값을 위한 스캐너 객체 생성
 
     // 해당 문자열이 숫자인걸 판별해주는 메서드
-    boolean isNumber(String str) {
+    boolean isNumber(String str) {       // Boolean 타입으로 반환해주는 문자열이 실수인지 판별해주는 메서드
         if (str == null || str.isEmpty()){
             return false;
         }
-        for (char c : str.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
+        try {
+            Double.parseDouble(str);     // 매개변수 str 을 실수형으로 변환하려할때 그냥 변환이 된다면 참을 반환해주고 변환이 되지않아 오류를 발생하면 아래 catch 문으로 넘어간다.
+            return true;
+        }catch (NumberFormatException e){ // 여기서 반환이 되지않을때 에러를 다루는데 실수형으로 반환이 되지않는다는건 문자라는걸 의미 고로 거짓을 반환한다.
+            return false;
         }
-        return true;
     }
 
-    // 연산자 타입이 비어있지않거나 4가지 사칙연산 타입에 해당되면 참을 반환하게 된다
+    // Boolean 타입으로 반환해주는 연산자가 [ + , - , * , / ] 에 해당이 되고 비어있지 않는지 판별해주는 메서드
     boolean isOperator(String str) {
         return str != null && (str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/"));
     }
 
-    // 필드 값 세팅
+    // 위 선언한 변수들에 값을 매개변수를 받아 설정해주는 메서드
     void setOperands(double num1 ,String operator ,double num2) {
         this.num1 = num1;
         this.num2 = num2;
@@ -33,9 +33,7 @@ public class CalculatorModule {
 
     /*
      * [ 연산 프로그램 메서드 ]
-     *
      * 3개의 매개변수 값을 받아 switch문에 부호 값에 따라 알맞는 사칙연산 메서드가 호출되어 연산을 해준다.
-     *
      * */
     void operatorProgram(double num1 , String operator , double num2) {
         switch (operator) {
@@ -45,6 +43,7 @@ public class CalculatorModule {
                 System.out.println("결과 값 : " + result + "\n");
                 result = 0;                                             // result 는 출력 후 0으로 설정된다.
                 break;                                                  // switch 문 종료
+                                                                        // 나머지 3개는 위 코드와 비슷한 기능을 수행합니다
             case "-":
                 this.result = Subtraction.subtract(num1 , num2);
                 this.recentValue = Subtraction.subtract(this.num1 , this.num2);
@@ -75,7 +74,7 @@ public class CalculatorModule {
     void startCalculator() {
         while (true){
             System.out.print("\n수를 입력해주세요 > ");
-            String num1 = sc.nextLine();  // 변수 num1 값에 문자열로 입력받는다.
+            String num1 = sc.nextLine();                     // 변수 num1 값에 문자열로 입력받는다.
             if(num1.equalsIgnoreCase("Q")) {     // 입력받은 num1 값이 Q(q) 일 경우에 break 문으로 계산기가 종료되게 된다.
                 System.out.println("계산기가 종료되었습니다.");
                 break;
@@ -134,9 +133,9 @@ public class CalculatorModule {
             String recent = sc.nextLine();          // 이전의 값으로 연산을 할건지에 대한 답을 받는다.
 
             if (recent.equalsIgnoreCase("Y")) { // Y 일시 밑에 로직이 실행된다.
-                num1 = this.recentValue;                   // num1은 startCalculator() 에서 연산한 값을 부여한다. ( recentValue는 operatorProgram 에서
+                num1 = this.recentValue;                   // num1은 startCalculator() 에서 연산한 값을 부여한다. ( recentValue는 operatorProgram 에서 사용한다 )
 
-                String operator;
+                String operator;                           // 위와 동일한 코드
                 while (true){
                     System.out.print("\n연산자를 입력하세요 > ");
                     operator = sc.nextLine();
@@ -151,7 +150,7 @@ public class CalculatorModule {
                     break;
                 }
 
-                String num2;
+                String num2;                               // 위와 동일한 코드
                 while (true){
                     System.out.print("\n수를 입력해주세요 > ");
                     num2 = sc.nextLine();
@@ -166,7 +165,7 @@ public class CalculatorModule {
                     break;
                 }
 
-                double parsedNum2 = Double.parseDouble(num2);
+                double parsedNum2 = Double.parseDouble(num2);   // 실수형으로 문자열 num2 를 변환해준다
 
                 setOperands(num1 , operator , parsedNum2);      // num1은 double 형이기 때문에 바로 형변환을 하지않는다
                 try{
