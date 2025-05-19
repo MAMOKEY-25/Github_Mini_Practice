@@ -1,6 +1,6 @@
 # 모듈 호출
 import addmodule 
-import substraction
+import subtraction
 import multiplication
 import div
 
@@ -25,7 +25,7 @@ def main():
         print(result)             #덧셈
     
     elif choice == '2':
-        calc = substraction.Subtractor()
+        calc = subtraction.Subtractor()
         result = calc.subtract(a,b)
         print(result)            #뺄셈
     
