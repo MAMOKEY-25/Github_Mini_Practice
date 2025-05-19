@@ -1,10 +1,14 @@
+import numbers
+
 class Multiplication:
-    # 두 수의 곱셈을 수행하는 메서드 정의
     def multiply(self, a, b):
-        try:
-            # a와 b를 곱한 결과를 반환
-            return a * b
-        except TypeError:
-            # a나 b가 숫자가 아닌 경우 예외 처리
-            # 사용자에게 숫자만 입력해야 한다는 메세지를 반환
+        # numbers.Number: int, float 등 숫자 타입을 포괄
+        if not isinstance(a, numbers.Number) or not isinstance(b, numbers.Number):
             return "숫자만 입력하세요."
+        
+        result = a * b
+        
+        # float 결과에 대해 소수점 오차 제거 (소수점 10자리까지 반올림)
+        if isinstance(result, float):
+            return round(result, 10)
+        return result
